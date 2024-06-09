@@ -22,7 +22,7 @@ const Login = () => {
     console.log("auth in github");
   };
   return (
-    <div className="h-screen w-screen flex-col  items-center justify-center bg-slate-300 flex ">
+    <div className="h-screen w-screen flex-col  items-center justify-center bg-[#efefef] flex ">
       <img src={svgLogo} className="w-64 h-auto" />
       {signup === false ? (
         <div className="flex p-4 flex-col gap-2 rounded-lg bg-white">
