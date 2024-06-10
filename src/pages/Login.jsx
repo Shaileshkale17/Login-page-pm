@@ -66,7 +66,7 @@ const Login = () => {
                 className="w-6 h-auto cursor-pointer"
                 onClick={() => googleAuth()}
               />
-              <img
+              {/* <img
                 src={xIcon}
                 className="w-6 h-auto cursor-pointer"
                 onClick={() => XAuth()}
@@ -75,7 +75,7 @@ const Login = () => {
                 src={github}
                 className="w-6 h-auto cursor-pointer"
                 onClick={() => GithubAuth()}
-              />
+              /> */}
             </div>
           </div>
           <div className="flex mt-5 flex-row font-serif justify-center items-center">
@@ -139,7 +139,7 @@ const Login = () => {
                 className="w-6 h-auto cursor-pointer"
                 onClick={() => googleAuth()}
               />
-              <img
+              {/* <img
                 src={xIcon}
                 className="w-6 h-auto cursor-pointer"
                 onClick={() => XAuth()}
@@ -148,7 +148,7 @@ const Login = () => {
                 src={github}
                 className="w-6 h-auto cursor-pointer"
                 onClick={() => GithubAuth()}
-              />
+              /> */}
             </div>
           </div>
           <div className="flex mt-5 flex-row font-serif justify-center items-center">
