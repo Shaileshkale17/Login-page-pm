@@ -8,13 +8,81 @@ import googleIcon from "../assets/google-color-svgrepo-com (1).svg";
 import xIcon from "../assets/twitter-3-logo-svgrepo-com.svg";
 import github from "../assets/github-octocat-svgrepo-com.svg";
 import UserIcon from "../assets/user-svgrepo-com.svg";
+import axios from "axios";
+import { auth, googleAuthprovider } from "../firebase";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+
 const Login = () => {
   const [Forgot, setForgot] = useState(false);
   const [signup, setsignup] = useState(false);
-  const handleSubmit = () => {};
-  const googleAuth = () => {
-    console.log("auth in google");
+  const [loginEmail, setloginEmail] = useState("");
+  const [loginpassword, setloginPassword] = useState("");
+  const [signupEmail, setsignupEmail] = useState("");
+  const [signuppassword, setsignupPassword] = useState("");
+  const [signupusername, setsignupUsername] = useState("");
+
+  const singINWithGoogle = async () => {
+    try {
+      const resut = await signInWithPopup(auth, googleAuthprovider);
+      console.log(resut);
+      // localStorage.setItem("token", resut.user.accessToken);
+      // localStorage.setItem("user", JSON.stringify(resut.user));
+    } catch (error) {
+      console.log(error);
+      console.log(error.message);
+    }
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const Email = loginEmail;
+  //     const Password = loginpassword;
+  //     const result = await signInWithEmailAndPassword(auth, Email, Password);
+  //     console.log(result);
+  //     // localStorage.setItem("token", resut.user.accessToken);
+  //     // localStorage.setItem("user", JSON.stringify(resut.user));
+  //   } catch (error) {
+  //     console.log(error);
+  //     console.log(error.message);
+  //   }
+  // };
+
+  // const handleSubmit = () => {
+  //   const res = axios.post(
+  //     "http://localhost:8080/api/v1/users/login",
+  //     {
+  //       email: loginEmail,
+  //       password: loginpassword,
+  //     },
+  //     {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   );
+
+  //   console.log("res", res);
+  // };
+  // const handleSubmitSignup = () => {
+  //   const res = axios.post(
+  //     "http://localhost:8080/api/v1/users/register",
+  //     {
+  //       email: signupEmail,
+  //       password: signuppassword,
+  //       username: signupusername,
+  //     },
+  //     {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   );
+
+  //   console.log("res", res);
+  // };
+
   const XAuth = () => {
     console.log("auth in X");
   };
@@ -32,6 +100,7 @@ const Login = () => {
               You must become a member to login and access the entire site
             </p>
           </div>
+
           <div className="flex flex-col px-8 gap-4">
             <InputBox
               title="Email Address"
@@ -39,6 +108,8 @@ const Login = () => {
               inputClasses="border p-2 w-full pl-[47px] font-serif"
               img={EmailIcon}
               imgClass="w-[12%]"
+              setValue={loginEmail}
+              getValue={setloginEmail}
             />
             <div>
               <InputPasswordmains
@@ -47,6 +118,8 @@ const Login = () => {
                 inputClasses="border p-2 w-full pl-[47px] font-serif"
                 img={PasswordIcon}
                 imgClass="w-[12%]"
+                setValue={loginpassword}
+                getValue={setloginPassword}
               />
               <p
                 className="text-right font-serif text-[#2c2c9a] cursor-pointer"
@@ -64,7 +137,7 @@ const Login = () => {
               <img
                 src={googleIcon}
                 className="w-6 h-auto cursor-pointer"
-                onClick={() => googleAuth()}
+                onClick={() => singINWithGoogle()}
               />
               {/* <img
                 src={xIcon}
@@ -104,6 +177,8 @@ const Login = () => {
               inputClasses="border p-2 w-full pl-[47px] font-serif"
               img={UserIcon}
               imgClass="w-[12%]"
+              setValue={signupusername}
+              getValue={setsignupUsername}
             />
             <InputBox
               title="Email Address"
@@ -112,6 +187,8 @@ const Login = () => {
               img={EmailIcon}
               imgClass="w-[12%]"
               type="email"
+              setValue={signupEmail}
+              getValue={setsignupEmail}
             />
             <div>
               <InputPasswordmains
@@ -120,6 +197,8 @@ const Login = () => {
                 inputClasses="border p-2 w-full pl-[47px] font-serif"
                 img={PasswordIcon}
                 imgClass="w-[12%]"
+                setValue={signuppassword}
+                getValue={setsignupPassword}
               />
               <p
                 className="text-right font-serif text-[#2c2c9a] cursor-pointer"
@@ -129,7 +208,7 @@ const Login = () => {
             </div>
             <button
               className="px-8 py-2 rounded font-semibold bg-[#2c2c9a] text-white "
-              onClick={() => handleSubmit()}>
+              onClick={() => handleSubmitSignup()}>
               sign up
             </button>
             <hr className="font-bold" />
@@ -137,7 +216,7 @@ const Login = () => {
               <img
                 src={googleIcon}
                 className="w-6 h-auto cursor-pointer"
-                onClick={() => googleAuth()}
+                onClick={() => singINWithGoogle()}
               />
               {/* <img
                 src={xIcon}
